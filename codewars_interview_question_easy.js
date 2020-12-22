@@ -16,6 +16,21 @@ More examples:
 "Las Vegas"  -->  "l:*,a:**,s:**,v:*,e:*,g:*"
 */
 
-function getStrings(city){
-  return
+const getStrings = (city) => {
+  let str = '';
+  let obj = {};
+  for(let i = 0; i < city.length; i++) {
+    if(obj[city[i].toLowerCase()] === undefined) {
+      obj[city[i].toLowerCase()] = '*';
+    } else {
+      obj[city[i]] += '*';
+    }
+  }
+  for(let i = 0; i < city.length; i++) {
+    if(obj[city[i].toLowerCase()] !== undefined) {
+      str += city[i] + ':' + obj[city[i]] + ',';
+      obj[city[i].toLowerCase()] = undefined;
+    }
+  }
+  return str.slice(0, str.length - 1);
 }
